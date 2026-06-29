@@ -1,5 +1,7 @@
 .gradle/
 build/
 local.properties
+keystore.properties
+signing/
 *.iml
 .DS_Store

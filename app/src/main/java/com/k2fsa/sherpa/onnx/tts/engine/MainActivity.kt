@@ -419,9 +419,15 @@ class MainActivity : ComponentActivity() {
                                     Toast.makeText(applicationContext, "Portal TTS set as default", Toast.LENGTH_SHORT).show()
                                 }.onFailure { e ->
                                     Log.w(TAG, "Failed to set default TTS engine", e)
+                                    runCatching {
+                                        startActivity(
+                                            Intent("android.settings.TTS_SETTINGS")
+                                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        )
+                                    }
                                     Toast.makeText(
                                         applicationContext,
-                                        "Could not change the default TTS engine from inside the app",
+                                        "Could not change it here. Opened the system TTS settings instead.",
                                         Toast.LENGTH_LONG
                                     ).show()
                                 }

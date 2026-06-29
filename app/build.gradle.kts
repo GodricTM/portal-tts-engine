@@ -1,7 +1,16 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
+
+val keystorePropsFile =
+    rootProject.file("signing/keystore.properties").takeIf { it.exists() }
+        ?: rootProject.file("keystore.properties").takeIf { it.exists() }
+        ?: File(System.getProperty("user.home"), ".portal-tts-signing/keystore.properties")
+val keystoreProps =
+    Properties().apply { if (keystorePropsFile.exists()) keystorePropsFile.inputStream().use(::load) }
 
 android {
     namespace = "com.k2fsa.sherpa.onnx.tts.engine"
@@ -20,6 +29,17 @@ android {
         }
     }
 
+    signingConfigs {
+        if (keystorePropsFile.exists()) {
+            create("release") {
+                storeFile = File(keystorePropsFile.parentFile, keystoreProps.getProperty("storeFile"))
+                storePassword = keystoreProps.getProperty("storePassword")
+                keyAlias = keystoreProps.getProperty("keyAlias")
+                keyPassword = keystoreProps.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -27,6 +47,14 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            if (keystorePropsFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            } else {
+                throw GradleException(
+                    "Release build requires signing. Expected keystore.properties at " +
+                        "${rootProject.file("keystore.properties").path} or ${keystorePropsFile.path}."
+                )
+            }
         }
     }
     compileOptions {
