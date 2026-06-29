@@ -18,8 +18,19 @@ const val MAX_TTS_SPEED = 5.0f
 
 object TtsEngine {
     var tts: OfflineTts? = null
-    private var activeModelId: String? = null
-    private var activeVoiceName: String? = null
+    var activeModelId: String? = null
+    var activeVoiceName: String? = null
+
+    /** Named voices for the currently loaded model, in speaker-id order (for the picker). */
+    fun currentVoices(context: Context): List<TtsVoiceSpec> =
+        activeModelId?.let { id -> VoiceCatalog.findInstalledModel(context, id)?.voiceSpecs }
+            ?: emptyList()
+
+    fun allInstalledVoices(context: Context): List<TtsVoiceSpec> =
+        VoiceCatalog.installedVoices(context)
+
+    fun modelForVoice(context: Context, voice: TtsVoiceSpec): TtsModelSpec? =
+        VoiceCatalog.findInstalledModel(context, voice.modelId)
 
     // https://en.wikipedia.org/wiki/ISO_639-3
     // Example:

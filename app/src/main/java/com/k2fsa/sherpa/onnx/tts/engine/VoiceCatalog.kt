@@ -77,6 +77,7 @@ data class TtsVoiceSpec(
 object VoiceCatalog {
     val models: List<TtsModelSpec> = listOf(
         kokoroMultiLangV10English(),
+        piperEnglishLessac(),
         piperRomanianMihai(),
     )
 
@@ -164,6 +165,28 @@ object VoiceCatalog {
                     name = "sherpa-piper-ro_RO-mihai-medium",
                     displayName = "Romanian mihai",
                     locale = Locale("ro", "RO"),
+                    sid = 0,
+                    quality = Voice.QUALITY_HIGH,
+                    modelId = modelId,
+                )
+            ),
+        )
+    }
+
+    private fun piperEnglishLessac(): TtsModelSpec {
+        val modelId = "vits-piper-en_US-lessac-medium"
+        return TtsModelSpec(
+            id = modelId,
+            displayName = "Piper English Lessac",
+            directoryName = "vits-piper-en_US-lessac-medium",
+            modelName = "en_US-lessac-medium.onnx",
+            dataDirName = "espeak-ng-data",
+            numThreads = 4,
+            voiceSpecs = listOf(
+                TtsVoiceSpec(
+                    name = "sherpa-piper-en_US-lessac-medium",
+                    displayName = "English Lessac",
+                    locale = Locale("en", "US"),
                     sid = 0,
                     quality = Voice.QUALITY_HIGH,
                     modelId = modelId,

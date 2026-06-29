@@ -59,7 +59,7 @@ class TtsViewModel : ViewModel() {
         }
     }
 
-    val tts = TextToSpeech(TtsApp.instance, onInitListener, "com.k2fsa.sherpa.onnx.tts.engine")
+    val tts = TextToSpeech(TtsApp.instance, onInitListener, TtsApp.instance.packageName)
 
     init {
         tts.setLanguage(Locale(TtsEngine.lang!!))
