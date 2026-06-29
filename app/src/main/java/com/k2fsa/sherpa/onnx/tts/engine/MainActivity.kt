@@ -272,7 +272,7 @@ class MainActivity : ComponentActivity() {
                 Column(
                     modifier = Modifier
                         .padding(contentPadding)
-                        .padding(16.dp)
+                        .padding(start = 16.dp, top = 72.dp, end = 16.dp, bottom = 16.dp)
                         .verticalScroll(rememberScrollState()),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
@@ -462,7 +462,7 @@ class MainActivity : ComponentActivity() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(R.mipmap.ic_launcher),
+                    painter = painterResource(R.mipmap.ic_launcher_foreground),
                     contentDescription = null,
                     modifier = Modifier.size(52.dp).clip(RoundedCornerShape(12.dp))
                 )
