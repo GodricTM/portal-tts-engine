@@ -3,7 +3,8 @@
 `portal_tts_engine/` is the single source of truth for Portal TTS.
 
 The older `portal-tts-src/` folder was a full upstream sherpa-onnx checkout used during the initial
-forking work. It is now reference material only. Do not build or install Portal TTS from that folder.
+forking work. Its Portal-specific assets were migrated here, and the redundant checkout has been
+removed from the workspace.
 
 Assets migrated from `portal-tts-src/`:
 
