@@ -1,0 +1,9 @@
+{
+  "name": "Portal TTS",
+  "description": "Offline Android text-to-speech engine for Meta Portal devices, with Portal-branded voice selection, benchmarking, previews, and multilingual voices.",
+  "package": "com.portal.tts",
+  "category": "utility",
+  "models": ["portal-plus", "portal-2019", "portal-mini", "portal-go", "portal-tv"],
+  "screenshots": ["screenshots/portal-tts-icon.png"],
+  "minSdk": 21
+}
