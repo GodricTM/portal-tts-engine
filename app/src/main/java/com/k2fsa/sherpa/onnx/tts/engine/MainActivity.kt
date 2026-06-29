@@ -361,7 +361,7 @@ class MainActivity : ComponentActivity() {
                                             } else {
                                                 val uri = FileProvider.getUriForFile(
                                                     context,
-                                                    "com.k2fsa.sherpa.onnx.tts.engine.fileprovider",
+                                                    "com.portal.tts.fileprovider",
                                                     file
                                                 )
                                                 val intent = Intent(Intent.ACTION_SEND).apply {

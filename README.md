@@ -19,8 +19,8 @@ A companion app to the [Immortal launcher](https://github.com/starbrightlab/immo
 Voice models (.onnx) are not bundled (too large for git). Download from [sherpa-onnx releases](https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models) and push to the device:
 
 ```bash
-adb push kokoro-multi-lang-v1_0/ /sdcard/Android/data/com.k2fsa.sherpa.onnx.tts.engine/files/
-adb push vits-piper-ro_RO-mihai-medium/ /sdcard/Android/data/com.k2fsa.sherpa.onnx.tts.engine/files/
+adb push kokoro-multi-lang-v1_0/ /sdcard/Android/data/com.portal.tts/files/
+adb push vits-piper-ro_RO-mihai-medium/ /sdcard/Android/data/com.portal.tts/files/
 ```
 
 The engine auto-detects installed models via `VoiceCatalog`.
@@ -32,8 +32,14 @@ The engine auto-detects installed models via `VoiceCatalog`.
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-After install: Settings > Accessibility > Text-to-speech > select "Sherpa-ONNX TTS Engine".
+After install: Settings > Accessibility > Text-to-speech > select "Portal TTS (Sherpa-ONNX)".
 
-## License
+## License & attribution
 
-MIT (same as Immortal). Native libs (onnxruntime, sherpa-onnx-jni) under their respective licenses.
+**Apache-2.0.** This app is a derivative of the [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx)
+Android TTS engine (Apache-2.0) by the Next-gen Kaldi / k2-fsa authors. It is repackaged as
+`com.portal.tts` with Portal-specific branding, voice auto-detection, and sideload tweaks. See
+[LICENSE](LICENSE) and [NOTICE](NOTICE) for the full license and a summary of changes. The bundled
+native libraries (onnxruntime, sherpa-onnx-jni) remain under their respective licenses.
+
+Not affiliated with Meta. "Portal" refers to the Meta Portal hardware this app targets.

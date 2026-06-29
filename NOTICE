@@ -1,0 +1,23 @@
+Portal TTS (Sherpa-ONNX)
+Copyright 2026 GodricTM
+
+This product is a derivative work of the sherpa-onnx Android text-to-speech
+engine app:
+
+  sherpa-onnx — https://github.com/k2-fsa/sherpa-onnx
+  Copyright the Next-gen Kaldi / k2-fsa authors (Xiaomi Corporation and others)
+  Licensed under the Apache License, Version 2.0.
+
+Modifications by GodricTM, for Meta Portal devices and the Immortal launcher:
+  - Repackaged as applicationId "com.portal.tts" with Portal-specific branding
+    (name, icon, FileProvider authority).
+  - Voice/model auto-detection (VoiceCatalog) for Kokoro multilingual and Piper
+    Romanian voices loaded from external storage.
+  - Build/manifest adjustments for sideloading on Portal hardware (ARM64).
+
+This software depends on and may bundle native libraries from sherpa-onnx and
+onnxruntime, each distributed under their own licenses (Apache-2.0 / MIT). See
+the sherpa-onnx project for full third-party license details.
+
+This project is not affiliated with, endorsed by, or sponsored by Meta. "Portal"
+refers only to the Meta Portal hardware this app targets.

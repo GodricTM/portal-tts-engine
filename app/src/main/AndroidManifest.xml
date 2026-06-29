@@ -44,7 +44,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.k2fsa.sherpa.onnx.tts.engine.fileprovider"
+            android:authorities="com.portal.tts.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

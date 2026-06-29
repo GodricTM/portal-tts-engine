@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.k2fsa.sherpa.onnx.tts.engine"
+        applicationId = "com.portal.tts"
         minSdk = 21
         targetSdk = 34
         versionCode = 20260608
