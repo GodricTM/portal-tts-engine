@@ -230,6 +230,12 @@ class MainActivity : ComponentActivity() {
             ?: allVoices.firstOrNull()
         val selectedModel = selectedVoice?.let { TtsEngine.modelForVoice(context, it) }
 
+        LaunchedEffect(selectedVoiceName) {
+            selectedVoice?.let { voice ->
+                testText = getSampleText(voice.locale.isO3Language)
+            }
+        }
+
         LaunchedEffect(generating) {
             if (generating) {
                 val mark = TimeSource.Monotonic.markNow()
@@ -403,8 +409,22 @@ class MainActivity : ComponentActivity() {
                             benchmarkElapsed = benchmarkElapsed,
                             benchmarkResults = benchmarkResults,
                             onSetDefaultEngine = {
-                                Settings.Secure.putString(contentResolver, Settings.Secure.TTS_DEFAULT_SYNTH, PORTAL_TTS_PACKAGE)
-                                Toast.makeText(applicationContext, "Portal TTS set as default", Toast.LENGTH_SHORT).show()
+                                runCatching {
+                                    Settings.Secure.putString(
+                                        contentResolver,
+                                        Settings.Secure.TTS_DEFAULT_SYNTH,
+                                        PORTAL_TTS_PACKAGE,
+                                    )
+                                }.onSuccess {
+                                    Toast.makeText(applicationContext, "Portal TTS set as default", Toast.LENGTH_SHORT).show()
+                                }.onFailure { e ->
+                                    Log.w(TAG, "Failed to set default TTS engine", e)
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Could not change the default TTS engine from inside the app",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             },
                             onRunBenchmarks = {
                                 if (benchmarkRunning) return@SettingsTab
